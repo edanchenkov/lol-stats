@@ -1,5 +1,7 @@
 @import "./skeleton";
+@import './vars';
+
 
 body {
-    color: red;
+    background-color: $white;
 }
