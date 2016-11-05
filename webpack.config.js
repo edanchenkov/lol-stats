@@ -29,6 +29,10 @@ module.exports = {
             {
                 test : /\.scss$/,
                 loader : ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
+            },
+            {
+                test : /\.(eot|svg|ttf|woff|woff2)$/,
+                loader : 'file?name=public/fonts/[name].[ext]'
             }
         ]
     },

@@ -1,10 +1,16 @@
 import React from 'react';
 import Search from './Search.jsx'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class App extends React.Component {
     render() {
         return (
-            <Search />
+            <MuiThemeProvider>
+                {/*<Search />*/}
+                <RaisedButton className="myClass" label="Default"/>
+            </MuiThemeProvider>
+
         );
     }
 }

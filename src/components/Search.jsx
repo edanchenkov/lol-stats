@@ -3,11 +3,12 @@ import React from 'react';
 class Search extends React.Component {
     render() {
         return (
-            <div className="search-container">
-                <label htmlFor="exampleEmailInput">Summor name</label>
-                <input className="u-full-width" type="text"
-                       placeholder="Faker"/>
-                <input className="button-primary" type="submit" value="Submit"/>
+            <div className="row">
+                <div className="input-field col s6">
+                    <i className="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" className="validate"/>
+                    <label htmlFor="icon_prefix">First Name</label>
+                </div>
             </div>
         );
     }
