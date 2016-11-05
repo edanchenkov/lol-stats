@@ -1,0 +1,10 @@
+@import "./../node_modules/normalize-scss/sass/normalize/import-now"; // import normalize-scss
+//@import "./node_modules/skeleton-sass/skeleton/core/config"; // Skeleton Sass core loader
+@import "./../node_modules/skeleton-sass/skeleton/core/config";
+//
+//// import default theme variables
+@import "./../node_modules/skeleton-sass/skeleton/themes/fresh/vars"; // theme variable overrides
+
+// import default theme styles
+@import "./../node_modules/skeleton-sass/skeleton/themes/fresh/base"; // theme base styles
+@import "./../node_modules/skeleton-sass/skeleton/themes/fresh/skeleton"; // theme grid styles
