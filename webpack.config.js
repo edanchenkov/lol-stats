@@ -1,4 +1,3 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 module.exports = {
@@ -9,10 +8,9 @@ module.exports = {
     },
     resolve : {
         root : [
-            path.resolve('./src'),
-            path.resolve('./styles')
+            path.resolve('./src')
         ],
-        extensions : ['', '.js', 'jsx', '.scss'],
+        extensions : ['', '.js', 'jsx'],
         exclude : [
             path.resolve('./node_modules')
         ],
@@ -34,10 +32,6 @@ module.exports = {
                 loader : 'babel-loader'
             },
             {
-                test : /\.scss$/,
-                loader : ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')
-            },
-            {
                 test : /\.(eot|svg|ttf|woff|woff2)$/,
                 loader : 'file?name=public/fonts/[name].[ext]'
             }
@@ -45,8 +39,5 @@ module.exports = {
     },
     jshint : {
         esversion : 6
-    },
-    plugins : [
-        new ExtractTextPlugin('styles.css')
-    ]
+    }
 };
