@@ -20,6 +20,13 @@ module.exports = {
     },
     devtool : 'source-map',
     module : {
+        preLoaders : [
+            {
+                test : /\.jsx?$/, // include .js files
+                exclude : /node_modules/, // exclude any and all files in the node_modules folder
+                loader : 'jsxhint-loader'
+            }
+        ],
         loaders : [
             {
                 test : /\.jsx?$/,
@@ -35,6 +42,9 @@ module.exports = {
                 loader : 'file?name=public/fonts/[name].[ext]'
             }
         ]
+    },
+    jshint : {
+        esversion : 6
     },
     plugins : [
         new ExtractTextPlugin('styles.css')

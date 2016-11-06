@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './../styles/app';
 
-import App from './components/App.jsx'
+import App from './components/App.jsx';
 
 const appDOM = document.getElementById('app');
 

@@ -10,7 +10,7 @@ class Search extends React.Component {
             zDepth : 4,
             hintText : 'Summoner name',
             id : 'summoner-name'
-        }
+        };
     }
 
     render() {
@@ -21,6 +21,5 @@ class Search extends React.Component {
         );
     }
 }
-
 
 export default Search;
