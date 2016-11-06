@@ -7,7 +7,6 @@ injectTapEventPlugin();
 import styles from './../styles';
 import Search from './Search.jsx';
 
-
 const style = {
     width : '75%',
     position : 'relative',

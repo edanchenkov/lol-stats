@@ -1,6 +1,8 @@
 import React from 'react';
 import Radium from 'radium';
 
+import Logger from './../logger';
+
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -27,9 +29,22 @@ class Search extends React.Component {
             },
             textFieldEl : {
                 hintText : 'Summoner name',
-                id : 'tf-summoner-name',
+                id : 'tf-summoner-name'
             }
         };
+
+        this.onChange = this.onChange.bind(this);
+        this.search = this.search.bind(this);
+    }
+
+    search() {
+        Logger.print('info', ['Run search for', this.state.textFieldEl.value]);
+    }
+
+    onChange(event) {
+        let _textFieldEl = this.state.textFieldEl;
+        _textFieldEl.value = event.target.value;
+        this.setState({ textFieldEl : _textFieldEl });
     }
 
     render() {
@@ -39,10 +54,14 @@ class Search extends React.Component {
                        zDepth={4}>
                     {/*<FontIcon className="material-icons" style={{marginRight : 24}}>search</FontIcon>*/}
                     <TextField hintText={this.state.textFieldEl.hintText}
+                               type="text"
                                id={this.state.textFieldEl.id}
+                               onChange={this.onChange}
                                fullWidth={true}/>
                 </Paper>
-                <RaisedButton style={style.searchButton} label="Search"
+                <RaisedButton onClick={this.search.bind(this)}
+                              style={style.searchButton}
+                              label="Search"
                               primary={true}/>
             </div>
         );
