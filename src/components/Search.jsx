@@ -1,15 +1,23 @@
 import React from 'react';
 
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+
 class Search extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            zDepth : 4,
+            hintText : 'Summoner name',
+            id : 'summoner-name'
+        }
+    }
+
     render() {
         return (
-            <div className="row">
-                <div className="input-field col s6">
-                    <i className="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" className="validate"/>
-                    <label htmlFor="icon_prefix">First Name</label>
-                </div>
-            </div>
+            <Paper zDepth={this.state.zDepth}>
+                <TextField hintText={this.state.hintText} id={this.state.id}/>
+            </Paper>
         );
     }
 }
