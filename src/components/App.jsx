@@ -1,20 +1,20 @@
 import React from 'react';
 import Radium from 'radium';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import Search from './Search.jsx';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+import styles from './../styles';
+import Search from './Search.jsx';
+
+
 const style = {
-    width : '50%',
-    position: 'relative',
-    top: '4rem',
+    width : '75%',
+    position : 'relative',
+    top : '8rem',
     margin : '0 auto'
 };
 
-// @Radium
 class App extends React.Component {
     render() {
         return (
@@ -24,6 +24,12 @@ class App extends React.Component {
                 </div>
             </MuiThemeProvider>
         );
+    }
+    componentWillMount() {
+        document.body.style.backgroundColor = styles.white;
+    }
+    componentWillUnmount() {
+        document.body.style.backgroundColor = '';
     }
 }
 
