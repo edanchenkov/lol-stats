@@ -41,6 +41,10 @@ class Search extends React.Component {
         this.search = this.search.bind(this);
     }
 
+    componentWillMount() {
+        this.emitter = this.props.emitter;
+    }
+
     search() {
         if (!this.state.textFieldEl.value) {
             return;
@@ -49,12 +53,13 @@ class Search extends React.Component {
         Logger.print('info', ['Run search for', this.state.textFieldEl.value]);
         Api.getSummonerIdByName(this.state.textFieldEl.value, this.state.region).then((res) => {
             if (res.ok && res.body && Object.keys(res.body)) {
-                let summoner = res.body[Object.keys(res.body)[0]];
-                console.debug(summoner.id);
-                Api.getSummonerDataById(summoner.id, this.state.region).then((res) => {
-                   
+                let { id } = res.body[Object.keys(res.body)[0]];
+                Api.getSummonerDataById(id, this.state.region).then((res) => {
+                    this.emitter.emit('ADD_SUMMONER', res.body);
                 });
             }
+        }).catch((err) => {
+            // TODO: Handle errors : 404
         });
     }
 
@@ -65,7 +70,7 @@ class Search extends React.Component {
     }
 
     selectRegion(event, key, value) {
-        this.setState({region : value});
+        this.setState({ region : value });
     }
 
     render() {
@@ -79,7 +84,8 @@ class Search extends React.Component {
                                id={this.state.textFieldEl.id}
                                onChange={this.onChange}
                                fullWidth={true}/>
-                    <SelectField value={this.state.region} onChange={this.selectRegion} autoWidth={true}>
+                    <SelectField value={this.state.region}
+                                 onChange={this.selectRegion} autoWidth={true}>
                         <MenuItem value={'euw'} primaryText="EUW"/>
                         <MenuItem value={'na'} primaryText="NA"/>
                         <MenuItem value={'kr'} primaryText="KR"/>
