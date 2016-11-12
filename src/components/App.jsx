@@ -8,7 +8,7 @@ import styles from './../styles';
 import Search from './Search.jsx';
 
 const style = {
-    width : '75%',
+    width : '55%',
     position : 'relative',
     top : '8rem',
     margin : '0 auto'

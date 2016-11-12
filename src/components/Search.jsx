@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import FontIcon from 'material-ui/FontIcon';
+import Api from './../api';
 
 const style = {
     searchContainer : {},
@@ -38,7 +38,16 @@ class Search extends React.Component {
     }
 
     search() {
+        if (!this.state.textFieldEl.value) {
+            return;
+        }
+
         Logger.print('info', ['Run search for', this.state.textFieldEl.value]);
+        Api.getSummonerIdByName(this.state.textFieldEl.value, 'euw').end((err, res = {}) => {
+            if (res.ok) {
+                console.debug(res);
+            }
+        });
     }
 
     onChange(event) {
