@@ -6,6 +6,8 @@ import Logger from './../logger';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import Api from './../api';
 
@@ -30,10 +32,12 @@ class Search extends React.Component {
             textFieldEl : {
                 hintText : 'Summoner name',
                 id : 'tf-summoner-name'
-            }
+            },
+            region : 'euw'
         };
 
         this.onChange = this.onChange.bind(this);
+        this.selectRegion = this.selectRegion.bind(this);
         this.search = this.search.bind(this);
     }
 
@@ -43,9 +47,13 @@ class Search extends React.Component {
         }
 
         Logger.print('info', ['Run search for', this.state.textFieldEl.value]);
-        Api.getSummonerIdByName(this.state.textFieldEl.value, 'euw').end((err, res = {}) => {
-            if (res.ok) {
-                console.debug(res);
+        Api.getSummonerIdByName(this.state.textFieldEl.value, this.state.region).then((res) => {
+            if (res.ok && res.body && Object.keys(res.body)) {
+                let summoner = res.body[Object.keys(res.body)[0]];
+                console.debug(summoner.id);
+                Api.getSummonerDataById(summoner.id, this.state.region).then((res) => {
+                   
+                });
             }
         });
     }
@@ -54,6 +62,10 @@ class Search extends React.Component {
         let _textFieldEl = this.state.textFieldEl;
         _textFieldEl.value = event.target.value;
         this.setState({ textFieldEl : _textFieldEl });
+    }
+
+    selectRegion(event, key, value) {
+        this.setState({region : value});
     }
 
     render() {
@@ -67,8 +79,14 @@ class Search extends React.Component {
                                id={this.state.textFieldEl.id}
                                onChange={this.onChange}
                                fullWidth={true}/>
+                    <SelectField value={this.state.region} onChange={this.selectRegion} autoWidth={true}>
+                        <MenuItem value={'euw'} primaryText="EUW"/>
+                        <MenuItem value={'na'} primaryText="NA"/>
+                        <MenuItem value={'kr'} primaryText="KR"/>
+                        <MenuItem value={'ru'} primaryText="RU"/>
+                    </SelectField>
                 </Paper>
-                <RaisedButton onClick={this.search.bind(this)}
+                <RaisedButton onClick={this.search}
                               style={style.searchButton}
                               label="Search"
                               primary={true}/>
