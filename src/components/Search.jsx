@@ -41,10 +41,6 @@ class Search extends React.Component {
         this.search = this.search.bind(this);
     }
 
-    componentWillMount() {
-        this.emitter = this.props.emitter;
-    }
-
     search() {
         if (!this.state.textFieldEl.value) {
             return;
@@ -55,7 +51,7 @@ class Search extends React.Component {
             if (res.ok && res.body && Object.keys(res.body)) {
                 let { id } = res.body[Object.keys(res.body)[0]];
                 Api.getSummonerDataById(id, this.state.region).then((res) => {
-                    this.emitter.emit('ADD_SUMMONER', res.body);
+                    this.props.handleSearchResult(res.body);
                 });
             }
         }).catch((err) => {
