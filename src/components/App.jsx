@@ -7,6 +7,7 @@ injectTapEventPlugin();
 
 import styles from './../styles';
 import Search from './Search.jsx';
+import SummonerCard from './SummonerCard.jsx';
 
 const style = {
     width : '55%',
@@ -38,7 +39,7 @@ class App extends React.Component {
                     <Search handleSearchResult={this.handleSearchResult}/>
                     {
                         this.state.summoners.map((summoner, i) => {
-                            return <div key={i}>{summoner.summonerId}</div>;
+                            return <SummonerCard key={i} summoner={summoner}/>;
                         })
                     }
                 </div>

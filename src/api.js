@@ -19,7 +19,7 @@ class Api {
     }
 
     static getSummonerDataById(id, region) {
-        const uri = '/api/lol/' + region + '/v1.3/stats/by-summoner/' + id + '/summary';
+        const uri = '/api/lol/' + region + '/v1.3/stats/by-summoner/' + id + '/ranked';
         return fetch(uri, region);
     }
 }
