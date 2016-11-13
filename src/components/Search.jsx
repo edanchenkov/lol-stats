@@ -3,6 +3,7 @@ import Radium from 'radium';
 
 import Logger from './../logger';
 import globalStyles from './../styles';
+import config from './../config';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -55,7 +56,9 @@ class Search extends React.Component {
             if (res.ok && res.body && Object.keys(res.body)) {
                 let { id } = res.body[Object.keys(res.body)[0]];
                 Api.getSummonerDataById(id, this.state.region).then((res) => {
-                    this.props.handleSearchResult(res.body[id]);
+                    let summoner = res.body[id];
+                    summoner.region = config.regions[this.state.region];
+                    this.props.handleSearchResult(summoner);
                 });
             }
         }).catch((err) => {
@@ -86,10 +89,13 @@ class Search extends React.Component {
                                fullWidth={true}/>
                     <SelectField value={this.state.region}
                                  onChange={this.selectRegion} autoWidth={true}>
-                        <MenuItem value={'euw'} primaryText="EUW"/>
-                        <MenuItem value={'na'} primaryText="NA"/>
-                        <MenuItem value={'kr'} primaryText="KR"/>
-                        <MenuItem value={'ru'} primaryText="RU"/>
+
+                        {
+                            Object.keys(config.regions).map((key, i) => {
+                                return <MenuItem key={i} value={key}
+                                                 primaryText={config.regions[key]}/>;
+                            })
+                        }
                     </SelectField>
                 </Paper>
                 <RaisedButton onClick={this.search}
