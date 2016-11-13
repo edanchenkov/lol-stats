@@ -21,13 +21,18 @@ class Api {
     }
 
     static getSummonerDataById(id, region) {
-        const uri = '/api/lol/' + region + '/v1.3/stats/by-summoner/' + id + '/ranked';
+        const uri = '/api/lol/' + region + '/v1.4/summoner/' + id;
         return fetch(uri, region);
     }
 
     static getChampions(region) {
         const uri = '/api/lol/static-data/' + region + '/v1.2/champion';
         return fetch(uri, 'global', 'locale=en_US&champData=image');
+    }
+
+    static getRealms(region) {
+        const uri = '/api/lol/static-data/' + region + '/v1.2/realm';
+        return fetch(uri, 'global');
     }
 }
 
