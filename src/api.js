@@ -2,13 +2,15 @@ import request from 'superagent';
 
 import config from './config';
 
-const fetch = (uri, region) => {
-    if (typeof region === 'undefined') {
+const fetch = (uri, server, query = '') => {
+    if (typeof server === 'undefined') {
         return Promise.reject(new Error('Specify region'));
     }
 
+    query = '?' + (query ? query + '&' : '') + 'api_key=' + config.keys.development;
+
     return request
-        .get(config.api.protocol + region + '.' + config.api.host + uri + '?api_key=' + config.keys.development)
+        .get(config.api.protocol + server + '.' + config.api.host + uri + query)
         .set('Accept', 'application/json');
 };
 
@@ -21,6 +23,11 @@ class Api {
     static getSummonerDataById(id, region) {
         const uri = '/api/lol/' + region + '/v1.3/stats/by-summoner/' + id + '/ranked';
         return fetch(uri, region);
+    }
+
+    static getChampions(region) {
+        const uri = '/api/lol/static-data/' + region + '/v1.2/champion';
+        return fetch(uri, 'global', 'locale=en_US&champData=image');
     }
 }
 
