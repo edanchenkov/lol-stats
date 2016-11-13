@@ -1,6 +1,10 @@
 import React from 'react';
 import Radium from 'radium';
 
+import globalStyles from './../styles';
+
+import Paper from 'material-ui/Paper';
+
 class SummonerCard extends React.Component {
     constructor() {
         super();
@@ -8,7 +12,11 @@ class SummonerCard extends React.Component {
 
     render() {
         let summoner = this.props.summoner;
-        return (<div>{summoner.summonerId}</div>);
+        return (
+            <Paper zDepth={globalStyles.defaultDepth}>
+                <h1>{summoner.name}</h1>
+            </Paper>
+        );
     }
 }
 

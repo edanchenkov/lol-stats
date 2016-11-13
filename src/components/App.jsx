@@ -5,12 +5,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import styles from './../styles';
+import globalStyles from './../styles';
+
 import Search from './Search.jsx';
 import SummonerCard from './SummonerCard.jsx';
 
 const style = {
-    width : '55%',
+    width : '100%',
     position : 'relative',
     top : '8rem',
     margin : '0 auto'
@@ -28,7 +29,7 @@ class App extends React.Component {
 
     handleSearchResult(summoner) {
         let summoners = this.state.summoners.slice();
-        summoners.push(summoner);
+        summoners.unshift(summoner);
         this.setState({ summoners : summoners });
     }
 
@@ -48,7 +49,7 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        document.body.style.backgroundColor = styles.white;
+        document.body.style.backgroundColor = globalStyles.white;
     }
 
     componentWillUnmount() {

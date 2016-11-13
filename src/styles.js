@@ -4,7 +4,9 @@ let styles = {
     blue : '#357E8F',
     darkBlue : '#142940',
     red : '#802C2A',
-    pink : '#D6757E'
+    pink : '#D6757E',
+
+    defaultDepth : 2
 };
 
 export default styles;

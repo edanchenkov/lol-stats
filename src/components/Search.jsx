@@ -2,6 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 
 import Logger from './../logger';
+import globalStyles from './../styles';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -12,7 +13,10 @@ import MenuItem from 'material-ui/MenuItem';
 import Api from './../api';
 
 const style = {
-    searchContainer : {},
+    searchContainer : {
+        width : '80%',
+        margin : '0 auto'
+    },
     searchButton : {
         marginTop : '2rem'
     },
@@ -51,7 +55,7 @@ class Search extends React.Component {
             if (res.ok && res.body && Object.keys(res.body)) {
                 let { id } = res.body[Object.keys(res.body)[0]];
                 Api.getSummonerDataById(id, this.state.region).then((res) => {
-                    this.props.handleSearchResult(res.body);
+                    this.props.handleSearchResult(res.body[id]);
                 });
             }
         }).catch((err) => {
@@ -73,7 +77,7 @@ class Search extends React.Component {
         return (
             <div id={this.state.id} style={style.searchContainer}>
                 <Paper style={style.paperContainer} id={this.state.paperEl.id}
-                       zDepth={4}>
+                       zDepth={globalStyles.defaultDepth}>
                     {/*<FontIcon className="material-icons" style={{marginRight : 24}}>search</FontIcon>*/}
                     <TextField hintText={this.state.textFieldEl.hintText}
                                type="text"
