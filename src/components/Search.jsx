@@ -46,7 +46,7 @@ class Search extends React.Component {
             return;
         }
 
-        Logger.print('info', ['Run search for', this.state.textFieldEl.value]);
+        Logger.print('info', ['Run search for', this.state.textFieldEl.value, this.state.region]);
         Api.getSummonerIdByName(this.state.textFieldEl.value, this.state.region).then((res) => {
             if (res.ok && res.body && Object.keys(res.body)) {
                 let { id } = res.body[Object.keys(res.body)[0]];
