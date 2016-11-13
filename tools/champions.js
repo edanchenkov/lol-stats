@@ -4,7 +4,6 @@ import Api from './../src/api';
 let file = 'data/champions.json';
 
 Api.getChampions('euw').end((err, res) => {
-
     let champions = JSON.parse(res.text).data;
     let content = {};
 
