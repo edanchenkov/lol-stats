@@ -15,7 +15,7 @@ import Api from './../api';
 
 const style = {
     searchContainer : {
-        width : '80%',
+        width : '30rem',
         margin : '0 auto'
     },
     searchButton : {
@@ -23,6 +23,14 @@ const style = {
     },
     paperContainer : {
         padding : '0 1.5rem'
+    },
+    summonerName : {
+        width : '15rem',
+        float : 'left'
+    },
+    selectRegion : {
+        width : '10rem',
+        marginLeft : '1rem'
     }
 };
 
@@ -31,12 +39,8 @@ class Search extends React.Component {
         super();
         this.state = {
             id : 'search-container',
-            paperEl : {
-                id : 'p-search-summoner-name'
-            },
             textFieldEl : {
-                hintText : 'Summoner name',
-                id : 'tf-summoner-name'
+                value : ''
             },
             region : 'euw'
         };
@@ -78,16 +82,17 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div id={this.state.id} style={style.searchContainer}>
-                <Paper style={style.paperContainer} id={this.state.paperEl.id}
+            <div style={style.searchContainer}>
+                <Paper style={style.paperContainer}
                        zDepth={globalStyles.defaultDepth}>
                     {/*<FontIcon className="material-icons" style={{marginRight : 24}}>search</FontIcon>*/}
-                    <TextField hintText={this.state.textFieldEl.hintText}
+                    <TextField style={style.summonerName}
+                               hintText="Summoner name"
                                type="text"
-                               id={this.state.textFieldEl.id}
                                onChange={this.onChange}
                                fullWidth={true}/>
-                    <SelectField value={this.state.region}
+                    <SelectField id="select-region" style={style.selectRegion}
+                                 value={this.state.region}
                                  onChange={this.selectRegion} autoWidth={true}>
 
                         {
