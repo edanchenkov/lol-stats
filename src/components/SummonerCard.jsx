@@ -3,6 +3,9 @@ import Radium from 'radium';
 
 import Logger from './../logger';
 import realms from './../../data/realms.json';
+import config from './../config';
+
+import Api from './../api';
 
 import {
     Card,
@@ -20,12 +23,17 @@ const style = {
 };
 
 class SummonerCard extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.summoner = this.props.summoner;
+
+        Api.getMatchList(this.summoner.id, this.summoner.region).then((res) => {
+            // console.debug(res)
+        });
     }
 
     render() {
-        let summoner = this.props.summoner;
+        let summoner = this.summoner;
         let avatarUri = realms.cdn + '/' + realms.n.profileicon + '/img/profileicon/' + summoner.profileIconId + '.png';
 
         Logger.print('info', ['Render summoner', summoner]);
@@ -34,7 +42,7 @@ class SummonerCard extends React.Component {
             <Card style={style.cardContainer}>
                 <CardHeader
                     title={summoner.name}
-                    subtitle={summoner.region + ' (' + summoner.summonerLevel + ')'}
+                    subtitle={config.regions[summoner.region] + ' (' + summoner.summonerLevel + ')'}
                     avatar={avatarUri}
                 />
                 <CardText>

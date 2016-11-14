@@ -34,6 +34,12 @@ class Api {
         const uri = '/api/lol/static-data/' + region + '/v1.2/realm';
         return fetch(uri, 'global');
     }
+
+    static getMatchList(id, region) {
+        const uri = '/api/lol/' + region + '/v2.2/matchlist/by-summoner/' + id;
+        return fetch(uri, region, 'rankedQueues=RANKED_TEAM_5x5,RANKED_FLEX_SR&seasons=PRESEASON2017,SEASON2017&beginIndex=0endIndex=19');
+    }
+
 }
 
 export default Api;

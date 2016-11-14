@@ -61,7 +61,7 @@ class Search extends React.Component {
                 let { id } = res.body[Object.keys(res.body)[0]];
                 Api.getSummonerDataById(id, this.state.region).then((res) => {
                     let summoner = res.body[id];
-                    summoner.region = config.regions[this.state.region];
+                    summoner.region = this.state.region;
                     this.props.handleSearchResult(summoner);
                 });
             }
