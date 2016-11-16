@@ -7,6 +7,8 @@ app.get('/', function (req, res) {
     res.sendfile('www/index.html');
 });
 
-app.listen(80, function (req, res) {
-    console.log('Running server on 80');
+var port = process.env.PORT || 8080;
+
+app.listen(port, function (req, res) {
+    console.log('Running server on port');
 });
