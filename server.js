@@ -8,5 +8,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(8080, function (req, res) {
-    console.log('Listening on :8080')
+    console.log('Running server on 8080');
 });
