@@ -56,6 +56,9 @@ class Search extends React.Component {
         }
 
         Logger.print('info', ['Run search for', this.state.textFieldEl.value, this.state.region]);
+
+        // TODO: Check if id is in localstorage
+
         Api.getSummonerIdByName(this.state.textFieldEl.value, this.state.region).then((res) => {
             if (res.ok && res.body && Object.keys(res.body)) {
                 let { id } = res.body[Object.keys(res.body)[0]];

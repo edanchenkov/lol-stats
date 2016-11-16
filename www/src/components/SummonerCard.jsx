@@ -28,7 +28,7 @@ class SummonerCard extends React.Component {
         this.summoner = this.props.summoner;
 
         Api.getMatchList(this.summoner.id, this.summoner.region).then((res) => {
-            // console.debug(res)
+            console.debug(res)
         });
     }
 

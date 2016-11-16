@@ -6,7 +6,7 @@ let config = {
         region : ''
     },
     keys : {
-        development : '< Your API key >',
+        development : 'RGAPI-9cc57470-7927-4c11-a671-09c43ecc25b1',
         production : '< You API key >'
     },
     regions : {

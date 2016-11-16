@@ -12,7 +12,7 @@ module.exports = {
         ],
         extensions : ['', '.js', 'jsx'],
         exclude : [
-            path.resolve('./node_modules')
+            path.resolve('./../node_modules')
         ],
         modulesDirectories : ['node_modules']
     },

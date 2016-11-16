@@ -1,0 +1,9 @@
+{
+    "verbose": true,
+    "ignore": [
+        "node_nodules",
+        "www"
+    ],
+    "execMap": {
+    }
+}
