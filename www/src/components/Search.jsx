@@ -3,7 +3,6 @@ import Radium from 'radium';
 
 import Logger from './../logger';
 import globalStyles from './../styles';
-import config from './../config';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -11,6 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import config from './../../../config';
 import Api from './../api';
 
 const style = {
@@ -57,17 +57,10 @@ class Search extends React.Component {
 
         Logger.print('info', ['Run search for', this.state.textFieldEl.value, this.state.region]);
 
-        // TODO: Check if id is in localstorage
+        Api.getSummonerCardBySummonerName(this.state.textFieldEl.value, this.state.region).then((res) => {
 
-        Api.getSummonerIdByName(this.state.textFieldEl.value, this.state.region).then((res) => {
-            if (res.ok && res.body && Object.keys(res.body)) {
-                let { id } = res.body[Object.keys(res.body)[0]];
-                Api.getSummonerDataById(id, this.state.region).then((res) => {
-                    let summoner = res.body[id];
-                    summoner.region = this.state.region;
-                    this.props.handleSearchResult(summoner);
-                });
-            }
+            console.log(res);
+
         }).catch((err) => {
             // TODO: Handle errors : 404
         });

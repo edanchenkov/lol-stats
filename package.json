@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node server.js",
-    "dev": "nodemon server.js --debug --exec babel-node",
+    "start": "babel-node server/server.js",
+    "dev": "nodemon server/server.js --debug --exec babel-node",
     "postinstall": "bash post_install.sh"
   },
   "author": "",

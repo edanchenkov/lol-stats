@@ -1,9 +1,9 @@
 import fs from 'fs';
-import Api from './../src/api';
+import RiotApi from './../server/RiotApi';
 
 let file = 'data/champions.json';
 
-Api.getChampions('euw').end((err, res) => {
+RiotApi.getChampions('euw').end((err, res) => {
     let champions = JSON.parse(res.text).data;
     let content = {};
 

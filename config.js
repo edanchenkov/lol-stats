@@ -1,9 +1,12 @@
 let config = {
     logs : true,
-    api : {
+    riotApi : {
         protocol : 'https://',
         host : 'api.pvp.net',
         region : ''
+    },
+    nodeApp : {
+
     },
     keys : {
         development : 'RGAPI-9cc57470-7927-4c11-a671-09c43ecc25b1',

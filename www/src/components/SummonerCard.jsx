@@ -2,10 +2,9 @@ import React from 'react';
 import Radium from 'radium';
 
 import Logger from './../logger';
-import realms from './../../data/realms.json';
-import config from './../config';
+// import realms from './../../data/realms.json';
 
-import Api from './../api';
+// import Api from './../api';
 
 import {
     Card,
@@ -27,9 +26,9 @@ class SummonerCard extends React.Component {
         super(props);
         this.summoner = this.props.summoner;
 
-        Api.getMatchList(this.summoner.id, this.summoner.region).then((res) => {
-            console.debug(res);
-        });
+        // Api.getMatchList(this.summoner.id, this.summoner.region).then((res) => {
+        //     console.debug(res);
+        // });
     }
 
     render() {
@@ -42,7 +41,7 @@ class SummonerCard extends React.Component {
             <Card style={style.cardContainer}>
                 <CardHeader
                     title={summoner.name}
-                    subtitle={config.regions[summoner.region] + ' (' + summoner.summonerLevel + ')'}
+                    subtitle={summoner.region + ' (' + summoner.summonerLevel + ')'}
                     avatar={avatarUri}
                 />
                 <CardText>
