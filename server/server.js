@@ -1,5 +1,6 @@
 import express from 'express';
-import api from './api';
+
+import api from './router';
 
 const app = express();
 const port = process.env.PORT || 8080;
