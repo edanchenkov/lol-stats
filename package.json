@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node server/server.js",
+    "start": "npm lint && babel-node server/server.js",
     "dev": "nodemon server/server.js --debug --exec babel-node",
-    "postinstall": "bash post_install.sh"
+    "postinstall": "bash post_install.sh",
+    "lint": "jshint server/**"
   },
   "author": "",
   "license": "ISC",
