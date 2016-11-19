@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-echo "> Go to www folder"
-cd www
-
 echo "> Recreate data folder"
 rm -rf data
 mkdir data
@@ -13,5 +10,7 @@ babel-node tools/champions.js
 echo "> Getting Realms Data"
 babel-node tools/realms.js
 
+# TODO: Move it
 echo "> Build client webpack"
+cd www
 webpack
