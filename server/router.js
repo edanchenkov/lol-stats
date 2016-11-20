@@ -2,6 +2,7 @@ import express from 'express';
 
 import Cache from './cache';
 import RiotApi from './RiotApi';
+import Logger from './../logger';
 
 const Router = express.Router();
 
@@ -19,19 +20,21 @@ Router.get('/summoner/:region/:summonerName/card', (req, res) => {
 
         if (typeof cacheData === 'object' &&
             (JSON.stringify(cacheData.summoner) === JSON.stringify(summoner))) {
-            console.log('Return data from cache');
+            Logger.print('log', ['Return data from cache']);
             jsonResponse(res, 200, cacheData);
         } else {
-            console.log('Cache data is outdated');
+            Logger.print('log', ['Cache data is outdated', summoner]);
             RiotApi.getMatchList(summoner.id, region).then((data) => {
-                jsonResponse(res, 200, Cache.set(req.path, {
+                jsonResponse(res, 200, Cache.set({
                     summoner : summoner,
                     matches : JSON.parse(data.text).matches
-                }));
+                }, req.path));
             }).catch((err) => {
                 jsonResponse(res, err.status, err);
             });
         }
+    }).catch((err) => {
+        jsonResponse(res, err.status, err);
     });
 });
 

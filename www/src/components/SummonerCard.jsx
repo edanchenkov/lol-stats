@@ -1,10 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import Logger from './../logger';
-// import realms from './../../data/realms.json';
-
-// import Api from './../api';
+import Logger from './../../../logger';
 
 import {
     Card,

@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 
-import Logger from './../logger';
+import Logger from './../../../logger';
 import globalStyles from './../styles';
 
 import Paper from 'material-ui/Paper';
