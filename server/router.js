@@ -23,12 +23,22 @@ Router.get('/summoner/:region/:summonerName/card', (req, res) => {
             Logger.print('log', ['Return data from cache']);
             jsonResponse(res, 200, cacheData);
         } else {
-            Logger.print('log', ['Cache data is outdated', summoner]);
-            RiotApi.getMatchList(summoner.id, region).then((data) => {
+            Logger.print('log', [
+                'Cache data is outdated',
+                [summoner.id, summoner.revisionDate]
+            ]);
+
+            Promise.all([
+                RiotApi.getMatchList(summoner.id, region),
+                RiotApi.getSummonerSummary(summoner.id, region)
+            ]).then((data) => {
                 jsonResponse(res, 200, Cache.set({
                     summoner : summoner,
-                    matches : JSON.parse(data.text).matches
+                    matches : JSON.parse(data[0].text).matches,
+                    region : region,
+                    playerStatSummaries : JSON.parse(data[1].text).playerStatSummaries
                 }, req.path));
+
             }).catch((err) => {
                 jsonResponse(res, err.status, err);
             });

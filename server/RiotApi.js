@@ -9,7 +9,7 @@ const fetch = (uri, server, query = '') => {
     query = '?' + (query ? query + '&' : '') + 'api_key=' + config.keys.development;
 
     return request
-        .get(config.riotApi .protocol + server + '.' + config.riotApi .host + uri + query)
+        .get(config.riotApi.protocol + server + '.' + config.riotApi.host + uri + query)
         .set('Accept', 'application/json');
 };
 
@@ -36,7 +36,12 @@ class RiotApi {
 
     static getMatchList(id, region) {
         const uri = '/api/lol/' + region + '/v2.2/matchlist/by-summoner/' + id;
-        return fetch(uri, region, 'rankedQueues=RANKED_TEAM_5x5,RANKED_FLEX_SR&seasons=PRESEASON2016,SEASON2016,PRESEASON2017,SEASON2017&beginIndex=0&endIndex=20');
+        return fetch(uri, region, 'rankedQueues=' + config.queueTypes.join(',') + '&seasons=' + config.seasons.join(',') + '&beginIndex=0&endIndex=20');
+    }
+
+    static getSummonerSummary(id, region) {
+        const uri = '/api/lol/' + region + '/v1.3/stats/by-summoner/' + id + '/summary';
+        return fetch(uri, region);
     }
 
 }
