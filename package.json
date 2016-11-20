@@ -30,6 +30,7 @@
     "jshint-loader": "^0.8.3",
     "json-loader": "^0.5.4",
     "jsxhint-loader": "^0.2.0",
+    "lodash": "^4.17.2",
     "material-ui": "^0.16.1",
     "nodemon": "^1.11.0",
     "radium": "^0.18.1",
