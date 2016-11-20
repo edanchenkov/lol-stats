@@ -2,7 +2,7 @@ import request from 'superagent';
 
 const fetch = (uri) => {
     return request
-        .get('http://localhost:8080/api' + uri)
+        .get('/api' + uri)
         .set('Accept', 'application/json');
 };
 

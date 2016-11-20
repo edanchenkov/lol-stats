@@ -58,9 +58,7 @@ class Search extends React.Component {
         Logger.print('info', ['Run search for', this.state.textFieldEl.value, this.state.region]);
 
         Api.getSummonerCardBySummonerName(this.state.textFieldEl.value, this.state.region).then((res) => {
-
-            console.log(res);
-
+            this.props.handleSearchResult(res.body);
         }).catch((err) => {
             // TODO: Handle errors : 404
         });

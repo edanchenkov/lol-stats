@@ -21,16 +21,16 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            summoners : []
+            summonerCards : []
         };
 
         this.handleSearchResult = this.handleSearchResult.bind(this);
     }
 
-    handleSearchResult(summoner) {
-        let summoners = this.state.summoners.slice();
-        summoners.unshift(summoner);
-        this.setState({ summoners : summoners });
+    handleSearchResult(summonerCard) {
+        let summonerCards = this.state.summonerCards.slice();
+        summonerCards.unshift(summonerCard);
+        this.setState({ summonerCards : summonerCards });
     }
 
     render() {
@@ -39,8 +39,8 @@ class App extends React.Component {
                 <div style={style}>
                     <Search handleSearchResult={this.handleSearchResult}/>
                     {
-                        this.state.summoners.map((summoner, i) => {
-                            return <SummonerCard key={i} summoner={summoner}/>;
+                        this.state.summonerCards.map((data, i) => {
+                            return <SummonerCard key={i} data={data}/>;
                         })
                     }
                 </div>
