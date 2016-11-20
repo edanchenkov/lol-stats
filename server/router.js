@@ -15,24 +15,29 @@ Router.get('/summoner/:region/:summonerName/card', (req, res) => {
         let summoner = JSON.parse(data.text);
         summoner = summoner[Object.keys(summoner)[0]];
 
-        let cachedSummoner = Cache.get(req.path);
+        let cacheData = Cache.get(req.path);
 
-        if (typeof cachedSummoner === 'object' && cachedSummoner.revisionDate === summoner.revisionDate) {
-            res.json({
-                data : cachedSummoner,
-                status : 200
-            });
+        if (typeof cacheData === 'object' &&
+            (JSON.stringify(cacheData.summoner) === JSON.stringify(summoner))) {
+            console.log('Return data from cache');
+            jsonResponse(res, 200, cacheData);
         } else {
-            //TODO: Do other calls to get card
-            Cache.set(req.path, summoner);
-
-            res.json({
-                data : summoner,
-                status : 200
+            console.log('Cache data is outdated');
+            RiotApi.getMatchList(summoner.id, region).then((data) => {
+                jsonResponse(res, 200, Cache.set(req.path, {
+                    summoner : summoner,
+                    matches : JSON.parse(data.text).matches
+                }));
+            }).catch((err) => {
+                jsonResponse(res, err.status, err);
             });
         }
     });
 });
+
+let jsonResponse = (res, status, body) => {
+    res.status(status).json(body);
+};
 
 
 export default Router;

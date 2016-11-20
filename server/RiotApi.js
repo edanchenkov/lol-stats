@@ -36,7 +36,7 @@ class RiotApi {
 
     static getMatchList(id, region) {
         const uri = '/api/lol/' + region + '/v2.2/matchlist/by-summoner/' + id;
-        return fetch(uri, region, 'rankedQueues=RANKED_TEAM_5x5,RANKED_FLEX_SR&seasons=PRESEASON2017,SEASON2017&beginIndex=0endIndex=19');
+        return fetch(uri, region, 'rankedQueues=RANKED_TEAM_5x5,RANKED_FLEX_SR&seasons=PRESEASON2016,SEASON2016,PRESEASON2017,SEASON2017&beginIndex=0&endIndex=20');
     }
 
 }

@@ -3,16 +3,27 @@ class Cache {
         this.keys = {};
     }
 
-    set(key, value) {
-        this.keys[key] = value;
+    set(value, key = '') {
+        key = key.toLowerCase();
+        if (key) {
+            this.keys[key] = value;
+        }
+
+        return value;
     }
 
-    del(key) {
+    del(key = '') {
+        key = key.toLowerCase();
         delete this.keys[key];
     }
 
-    get(key) {
+    get(key = '') {
+        key = key.toLowerCase();
         return this.keys[key];
+    }
+
+    clear() {
+        this.keys = {};
     }
 
 }
