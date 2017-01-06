@@ -5,7 +5,7 @@ Express application
 ### Project status
 
 version : `0.0.1` </br>
-status : `under development`
+status : `suspended`
 
 ### Compile js and scss => Run
 
