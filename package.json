@@ -34,7 +34,7 @@
     "nodemon": "^1.11.0",
     "radium": "^0.18.1",
     "react-tap-event-plugin": "^2.0.0",
-    "superagent": "^2.3.0",
+    "superagent": "^3.7.0",
     "webpack": "^1.13.3"
   }
 }
